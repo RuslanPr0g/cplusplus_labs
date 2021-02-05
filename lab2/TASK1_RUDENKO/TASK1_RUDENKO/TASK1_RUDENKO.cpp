@@ -1,22 +1,22 @@
 #include <iostream>
 
-void output1();
-void output2();
+using namespace std;
 
 int main()
 {
-    output1();
-    output1();
-    output2();
-    output2();
-}
+    int latitudeDegrees = 0, minutes = 0, seconds = 0;
+    
+    std::cout << "Enter latitude degrees, minutes, seconds\n";
 
-void output1()
-{
-    std::cout << "Three blind mice\n";
-}
+    cin >> latitudeDegrees;
+    cin >> minutes;
+    cin >> seconds;
 
-void output2()
-{
-    std::cout << "See how they run\n";
+    float degreesM = (minutes / static_cast<float>(60));
+    float degreesS = (seconds / static_cast<float>(3600));
+
+    cout << latitudeDegrees << endl;
+    cout << degreesM << endl;
+    cout << degreesS << endl;
+    cout << "\n\nResult: " << latitudeDegrees + degreesM + degreesS << "\n\n";
 }
