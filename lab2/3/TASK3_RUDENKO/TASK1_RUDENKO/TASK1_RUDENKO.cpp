@@ -1,17 +1,20 @@
 #include <iostream>
 
-double CelciusToFahrenheit(double celcius)
-{
-    // (°C × 9/5) + 32 = °F
-    return (celcius * static_cast<double>(9) / 5) + 32;
-}
+using namespace std;
 
-int main()
-{
-    double celc = 0;
+int main() {
+    const float milesPer100km = 62.14;
+    const float litersPerGallon = 3.875;
+    cout << "Enter automobile gasline consumption figure in the European stype (litters per 100 kilometers) :";
+    double lp100km;
+    cin >> lp100km;
 
-    std::cout << "Enter celcius value: ";
-    std::cin >> celc;
+    double mpg = 1 / (lp100km / litersPerGallon) * milesPer100km;
+    cout << lp100km
+        << " litters per 100 kilometers = "
+        << mpg
+        << " miles per gallon"
+        << endl;
 
-    std::cout << celc << " celcius is " << CelciusToFahrenheit(celc) << " fahrenheit.";
+    return 0;
 }
