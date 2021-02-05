@@ -1,18 +1,16 @@
 #include <iostream>
 
-void ShowTime(int hour, int minute)
-{
-    std::cout << "Time: " << hour << " : " << minute << ".";
-}
+using namespace std;
 
 int main()
 {
-    int h, m;
-
-    std::cout << "Enter hour: ";
-    std::cin >> h;
-    std::cout << "Enter minute: ";
-    std::cin >> m;
-
-    ShowTime(h, m);
+	cout << "For integer number from 32 till 70,\n";
+	cout << "their representation for\n";
+	cout << "characters is shown below\n\n";
+	cout << "integer character\n";
+	cout << "------- ---------\n";
+	for (int i = 32; i <= 70; i++)
+		cout << i << "\t\t" << (char)i << "\n";
+	
+	return 0;
 }
