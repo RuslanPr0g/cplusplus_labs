@@ -2,18 +2,18 @@
 
 using namespace std;
 
-void ConvertSectoDay(int n)
+void ConvertSectoDay(long long n)
 {
-    int day = n / (24 * 3600);
+    long long day = n / (24 * 3600);
 
     n = n % (24 * 3600);
-    int hour = n / 3600;
+    long long hour = n / 3600;
 
     n %= 3600;
-    int minutes = n / 60;
+    long long minutes = n / 60;
 
     n %= 60;
-    int seconds = n;
+    long long seconds = n;
 
     cout << day << " " << "days " << hour
         << " " << "hours " << minutes << " "
