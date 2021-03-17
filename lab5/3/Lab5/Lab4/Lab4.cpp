@@ -1,26 +1,23 @@
 #include <iostream>
+#include <array>
 
-using namespace ::std;
+int main() {
+    using namespace std;
 
-int main()
-{
-	int a = 0, b = 0;
+    int initialSum = 100;
+    double daphensInvestment = initialSum;
+    double cleosInvestment = initialSum;
+    int Years;
+    double interest10 = 0.1;
+    double interest5 = 0.05;
 
-start:
-	cout << "Enter an a: " << endl;
-	cin >> a;
+    for (Years = 0; cleosInvestment <= daphensInvestment; Years++) {
+        daphensInvestment = (initialSum * interest10) + daphensInvestment; 
+        cleosInvestment = (cleosInvestment * interest5) + cleosInvestment; 
+    }
+    cout << "Years taken for Cleos investment to exceed Daphnes: " << Years << endl;
+    cout << "Daphnes investment: " << daphensInvestment << endl;
+    cout << "Cleos investment: " << cleosInvestment << endl;
 
-	cout << "Enter a b: " << endl;
-	cin >> b;
-
-	if (a > b) {
-		cout << "Please, enter a valid number..." << endl;
-		goto start;
-	}
-	else if (a == b) {
-		cout << a << endl;
-	}
-	else {
-		cout <<  "\n\nResult: " << ((b - a + 1) * (a + b)) / 2 << endl << endl;
-	}
+    return 0;
 }
