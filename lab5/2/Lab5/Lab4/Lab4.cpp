@@ -4,24 +4,17 @@ using namespace ::std;
 
 int main()
 {
-	int a = 0, b = 0;
+	int number;
+	int sum = 0;
 
-start:
-	cout << "Enter an a: " << endl;
-	cin >> a;
+	do
+	{
+		cout << "Enter numbers: ";
+		cin >> number;
 
-	cout << "Enter a b: " << endl;
-	cin >> b;
+		sum = sum + number;
+		cout << "Current sum is: " << sum << endl;
+	} while (number != 0);
 
-
-	if (a > b) {
-		cout << "Please, enter a valid number..." << endl;
-		goto start;
-	}
-	else if (a == b) {
-		cout << a << endl;
-	}
-	else {
-		cout <<  "\n\nResult: " << ((b - a + 1) * (a + b)) / 2 << endl << endl;
-	}
+	return 0;
 }
