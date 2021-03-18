@@ -1,27 +1,40 @@
 #include <iostream>
+#include <string>
+#include <cstring>
+#include <cstdio>
 
-using namespace ::std;
+using namespace std;
+
+struct car
+{
+	string make;
+	int year;
+};
 
 int main()
 {
-	int a = 0, b = 0;
+	int num;
+	cout << "How many cars do you wish to catalog? ";
+	cin >> num;
 
-start:
-	cout << "Enter an a: " << endl;
-	cin >> a;
+	car* catalog = new car[num];
 
-	cout << "Enter a b: " << endl;
-	cin >> b;
+	for (int i = 0; i < num; ++i) {
+		cout << "Please enter the make: " << endl;
 
+		cin.ignore(1, '\n');
+		getline(cin, catalog[i].make);
 
-	if (a > b) {
-		cout << "Please, enter a valid number..." << endl;
-		goto start;
+		cout << "Please enter the year made: " << endl;
+		cin >> catalog[i].year;
 	}
-	else if (a == b) {
-		cout << a << endl;
+
+	cout << "Here's your collection: " << endl;
+	for (int i = 0; i < num; ++i) {
+		cout << catalog[i].year << " " << catalog[i].make << endl;
 	}
-	else {
-		cout <<  "\n\nResult: " << ((b - a + 1) * (a + b)) / 2 << endl << endl;
-	}
+
+	delete[] catalog;
+
+	return 0;
 }
