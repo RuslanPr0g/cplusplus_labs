@@ -1,27 +1,47 @@
 #include <iostream>
 
-using namespace ::std;
+using namespace std;
 
-int main()
+int largerThanAverage(int count, double donations[], double average)
 {
-	int a = 0, b = 0;
+	int largerThanAverage = 0;
 
-start:
-	cout << "Enter an a: " << endl;
-	cin >> a;
-
-	cout << "Enter a b: " << endl;
-	cin >> b;
-
-
-	if (a > b) {
-		cout << "Please, enter a valid number..." << endl;
-		goto start;
+	for (int j = 0; j < count; j++) {
+		if (donations[j] > average) {
+			largerThanAverage++;
+		}
 	}
-	else if (a == b) {
-		cout << a << endl;
+
+	return largerThanAverage;
+}
+
+int main() {
+	const int MAX_DONATIONS = 10;
+	double donations[MAX_DONATIONS];
+
+	cout << "Enter your donations.\nYou can enter a maximum of " << MAX_DONATIONS << " donations. <Enter q to terminate>" << endl;
+
+	int count = 0;
+
+	cout << "Donation #1: ";
+
+	while (count < MAX_DONATIONS && cin >> donations[count]) {
+		if (++count < MAX_DONATIONS) {
+			cout << "Donation #" << count + 1 << ": ";
+		}
 	}
-	else {
-		cout <<  "\n\nResult: " << ((b - a + 1) * (a + b)) / 2 << endl << endl;
+
+	double totalDonations = 0;
+
+	for (int i = 0; i < count; i++) {
+		totalDonations += donations[i];
 	}
+
+	double average = totalDonations / count;
+
+	cout << "Average Donation: " << average << endl;
+
+	cout << "Number of donations larger than the average: " << largerThanAverage(count, donations, average) << endl;
+
+	return 0;
 }
