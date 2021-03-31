@@ -1,27 +1,39 @@
 #include <iostream>
 
-using namespace ::std;
+int main(int argc, char** argv) {
+    using namespace std;
 
-int main()
-{
-	int a = 0, b = 0;
+    cout << "Please enter one of the following choices:\n";
+    cout << "c) carnivore            p) pianist\n";
+    cout << "t) tree                 g) game\n";
 
-start:
-	cout << "Enter an a: " << endl;
-	cin >> a;
+    char selection;
 
-	cout << "Enter a b: " << endl;
-	cin >> b;
+    while (cin >> selection && selection != 'c' && selection != 'p' && selection != 't' && selection != 'g') {
+        cout << "Please enter a c, p, t, or g: ";
+    }
 
+    switch (selection) {
+    case 'c':
+        cout << "A tiger is a carnivore" << endl;
 
-	if (a > b) {
-		cout << "Please, enter a valid number..." << endl;
-		goto start;
-	}
-	else if (a == b) {
-		cout << a << endl;
-	}
-	else {
-		cout <<  "\n\nResult: " << ((b - a + 1) * (a + b)) / 2 << endl << endl;
-	}
+        break;
+
+    case 'p':
+        cout << "John Legend is a pianist." << endl;
+
+        break;
+
+    case 't':
+        cout << "A maple is a tree." << endl;
+
+        break;
+
+    case 'g':
+        cout << "Monopoly is a game" << endl;
+
+        break;
+    }
+
+    return 0;
 }
