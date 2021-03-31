@@ -1,27 +1,37 @@
 #include <iostream>
 
-using namespace ::std;
+int main(int argc, char** argv) {
+    using namespace std;
 
-int main()
-{
-	int a = 0, b = 0;
+    double income;
 
-start:
-	cout << "Enter an a: " << endl;
-	cin >> a;
+    cout << "Enter your income: ";
 
-	cout << "Enter a b: " << endl;
-	cin >> b;
+    while (cin >> income && income >= 0) {
+        double totalTax = 0;
+        double taxable = 0;
 
+        if (income > 35000) {
+            taxable = income - 35000;
+            income = 35000;
+            totalTax += (0.2 * taxable);
+        }
 
-	if (a > b) {
-		cout << "Please, enter a valid number..." << endl;
-		goto start;
-	}
-	else if (a == b) {
-		cout << a << endl;
-	}
-	else {
-		cout <<  "\n\nResult: " << ((b - a + 1) * (a + b)) / 2 << endl << endl;
-	}
+        if (income > 15000) {
+            taxable = income - 15000;
+            income = 15000;
+            totalTax += (0.15 * taxable);
+        }
+
+        if (income > 5000) {
+            taxable = income - 5000;
+            income = 5000;
+            totalTax += (0.1 * taxable);
+        }
+
+        cout << "Your total tax is " << totalTax << " tvarps" << endl;
+        cout << "Enter next income amount: ";
+    }
+
+    return 0;
 }
