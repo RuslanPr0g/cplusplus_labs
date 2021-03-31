@@ -1,27 +1,31 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include <iostream>
-
-using namespace ::std;
 
 int main()
 {
-	int a = 0, b = 0;
+	FILE* filePointer;
+	char ch;
+	int countChars = 0;
 
-start:
-	cout << "Enter an a: " << endl;
-	cin >> a;
+	filePointer = fopen("lol.txt", "r");
 
-	cout << "Enter a b: " << endl;
-	cin >> b;
-
-
-	if (a > b) {
-		cout << "Please, enter a valid number..." << endl;
-		goto start;
+	if (filePointer == NULL)
+	{
+		printf("File is not available \n");
 	}
-	else if (a == b) {
-		cout << a << endl;
+	else
+	{
+		while ((ch = fgetc(filePointer)) != EOF)
+		{
+			printf("%c", ch);
+			countChars++;
+		}
+
+		fclose(filePointer);
+
+		std::cout << "\n\nTotal characters: " << countChars;
 	}
-	else {
-		cout <<  "\n\nResult: " << ((b - a + 1) * (a + b)) / 2 << endl << endl;
-	}
+
+	return 0;
 }
