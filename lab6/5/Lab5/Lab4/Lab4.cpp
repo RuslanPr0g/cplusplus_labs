@@ -1,27 +1,47 @@
 #include <iostream>
-
-using namespace ::std;
+#include <cstring>
+#include <cctype>
 
 int main()
 {
-	int a = 0, b = 0;
+    using namespace std;
+    string a;
 
-start:
-	cout << "Enter an a: " << endl;
-	cin >> a;
+    cout << "Enter words (q to quit)\n";
 
-	cout << "Enter a b: " << endl;
-	cin >> b;
+    int others = 0;
+    int vowels = 0;
+    int consonant = 0;
+
+    cin >> a;
+
+    while (a != "q")
+    {
+        cin >> a;
+        if (isalpha(a[0])) {
+            switch (a[0]) {
+            case 'a':
+            case 'i':
+            case 'u':
+            case 'e':
+            case 'o':
+                vowels++;
+                break;
+            default:
+                consonant++;
+                break;
+            }
+        }
+        else {
+            others++;
+        }
+
+    }
 
 
-	if (a > b) {
-		cout << "Please, enter a valid number..." << endl;
-		goto start;
-	}
-	else if (a == b) {
-		cout << a << endl;
-	}
-	else {
-		cout <<  "\n\nResult: " << ((b - a + 1) * (a + b)) / 2 << endl << endl;
-	}
+    cout << vowels << " words beginning with vowels\n";
+    cout << consonant << " words beginning with consonant\n";
+    cout << others << " others";
+
+    return 0;
 }
