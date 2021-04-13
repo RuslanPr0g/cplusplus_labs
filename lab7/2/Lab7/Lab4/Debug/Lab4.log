@@ -1,0 +1,3 @@
+﻿  Lab4.cpp
+C:\Users\theru\Desktop\Academy stuff\cplusplus_labs\lab7\2\Lab7\Lab4\Lab4.cpp(19,45): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Lab4.vcxproj -> C:\Users\theru\Desktop\Academy stuff\cplusplus_labs\lab7\2\Lab7\Debug\Lab4.exe
