@@ -1,56 +1,131 @@
 #include <iostream>
 #include <string>
+#include <cstring>
 
-using namespace std;
+// DEVELOPED BY RUDENKO RUSLAN SE-TE 2.01!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-class Person {
-private:
-    static const int LIMIT = 25;
-    std::string lname; // Person's last name
-    char fname[LIMIT]; // Person's first name
-public:
-    Person() {
-        lname = "";
-        fname[0] = '\0';
-        std::cout << "\nUsing default constructor.\nInitialisation done.\n";
-    } // #1
-    Person(const std::string& ln, const char* fn = "Hey you"); // #2
-    // the following methods display lname and fname
-    void Show() const; // first name last name format
-    void FormalShow() const; // last name, first name format
+/*
+*********************** DOMAIN THINGS
+ */
+
+struct customer {
+    char fullname[35];
+    double payment;
 };
 
-Person::Person(const std::string& ln, const char* fn) {
-    lname = ln;
-    strcpy(fname, fn);
-    std::cout << "\nUsing constructor with parameters.\nInitialisation done.\n";
+typedef customer Item;
+
+class Stack {
+private:
+    enum {
+        MAX = 10
+    };
+    // constant specific to class
+    Item items[MAX];
+    // holds stack items
+    int top;
+    // index for top stack item
+public:
+    Stack();
+    bool isempty() const;
+    bool isfull() const;
+    // push() returns false if stack already is full, true otherwise
+    bool push(const Item& item);
+    // add item to stack
+    // pop() returns false if stack already is empty, true otherwise
+    bool pop(Item& item);
+    // pop top into item
+};
+
+Stack::Stack()
+// create an empty stack
+{
+    top = 0;
 }
 
-void Person::Show() const {
-    std::cout << "\nMethod Show(): " << this->fname << " " << this->lname << std::endl;
-} // first name last name format
-void Person::FormalShow() const {
-    std::cout << "\nMethod FormalShow(): " << this->lname << " " << this->fname << std::endl;
-}// last name, first name format
+bool Stack::isempty() const {
+    return top == 0;
+}
 
+bool Stack::isfull() const {
+    return top == MAX;
+}
+
+bool Stack::push(const Item& item) {
+    if (top < MAX) {
+        items[top++] = item;
+        return true;
+    }
+    else
+        return false;
+}
+
+bool Stack::pop(Item& item) {
+    if (top > 0) {
+        item = items[--top];
+        return true;
+    }
+    else
+        return false;
+}
 
 int main() {
-    cout << "Setting object with constructor by default.";
-    Person my_person;
-    my_person.Show();
-    my_person.FormalShow();
+    using std::string;
+    using std::cout;
+    using std::endl;
+    using std::cin;
 
-    string s1 = "John";
-    char* ch = (char *)"Doe";
-    cout << "\nInitializing object with 1 parameter.\n";
-    Person my_person2(s1);
-    my_person2.Show();
-    my_person2.FormalShow();
+    Stack myStack;
 
-    cout << "\nInitializing object with 2 parameters.\n";
-    Person my_person3(s1, ch);
-    my_person3.Show();
-    my_person3.FormalShow();
+    int selection = 0;
+    double total = 0;
 
-    system("pause");
+    cout << "Enter your selection" << endl;
+    cout << "1 - Add customer" << endl;
+    cout << "2 - Remove customer" << endl;
+    cout << "Any other character - quit" << endl;
+
+    while (cin >> selection && (selection == 1 || selection == 2)) {
+        cin.get();
+
+        if (selection == 1) {
+            if (myStack.isfull()) {
+                cout << "Cannot add customer. Stack is full." << endl;
+            }
+            else {
+                customer newCustomer;
+                cout << "Enter customer name: ";
+                cin.getline(newCustomer.fullname, 35);
+
+                cout << "Enter payment: ";
+                (cin >> newCustomer.payment).get();
+
+                myStack.push(newCustomer);
+
+                cout << "Customer " << newCustomer.fullname << " added with a payment of " << newCustomer.payment << endl;
+            }
+        }
+        else {
+            if (myStack.isempty()) {
+                cout << "Cannot remove customer. Stack is empty." << endl;
+            }
+            else {
+                customer aCustomer;
+
+                myStack.pop(aCustomer);
+
+                cout << "Customer " << aCustomer.fullname << " removed." << endl;
+
+                total += aCustomer.payment;
+
+                cout << "Running Total: " << total << endl;
+            }
+        }
+
+        cout << "Make another selection: ";
+    }
+
+    cout << "Done." << endl;
+
+    return 0;
 }

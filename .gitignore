@@ -4,6 +4,10 @@
 # docx
 *.docx
 *.doc
+*/*.docx
+**/*.docx
+*/*.doc
+**/*.doc
 
 # Compiled Object files
 *.slo
