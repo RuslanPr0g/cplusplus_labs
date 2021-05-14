@@ -1,56 +1,48 @@
 #include <iostream>
-#include <string>
+#include <cstring>
 
-using namespace std;
+class Plorg {
+    static const int LEN = 19;
+    char name_[LEN];
+    int cI_;
 
-class Person {
-private:
-    static const int LIMIT = 25;
-    std::string lname; // Person's last name
-    char fname[LIMIT]; // Person's first name
 public:
-    Person() {
-        lname = "";
-        fname[0] = '\0';
-        std::cout << "\nUsing default constructor.\nInitialisation done.\n";
-    } // #1
-    Person(const std::string& ln, const char* fn = "Hey you"); // #2
-    // the following methods display lname and fname
-    void Show() const; // first name last name format
-    void FormalShow() const; // last name, first name format
+    Plorg(const char* name = "Plorga", int cI = 50);
+    void setCi(int newCi);
+    void showPlorg();
 };
 
-Person::Person(const std::string& ln, const char* fn) {
-    lname = ln;
-    strcpy(fname, fn);
-    std::cout << "\nUsing constructor with parameters.\nInitialisation done.\n";
+Plorg::Plorg(const char* name, int cI) {
+    strncpy(this->name_, name, this->LEN);
+    this->cI_ = cI;
 }
 
-void Person::Show() const {
-    std::cout << "\nMethod Show(): " << this->fname << " " << this->lname << std::endl;
-} // first name last name format
-void Person::FormalShow() const {
-    std::cout << "\nMethod FormalShow(): " << this->lname << " " << this->fname << std::endl;
-}// last name, first name format
+void Plorg::setCi(int newCi) {
+    this->cI_ = newCi;
+}
 
+void Plorg::showPlorg() {
+    using std::cout;
+    using std::endl;
+
+    cout << "Name: " << this->name_ << endl;
+    cout << "CI: " << this->cI_ << endl;
+}
 
 int main() {
-    cout << "Setting object with constructor by default.";
-    Person my_person;
-    my_person.Show();
-    my_person.FormalShow();
+    using std::cout;
 
-    string s1 = "John";
-    char* ch = (char *)"Doe";
-    cout << "\nInitializing object with 1 parameter.\n";
-    Person my_person2(s1);
-    my_person2.Show();
-    my_person2.FormalShow();
+    Plorg plorg;
 
-    cout << "\nInitializing object with 2 parameters.\n";
-    Person my_person3(s1, ch);
-    my_person3.Show();
-    my_person3.FormalShow();
+    plorg.showPlorg();
+    plorg.setCi(1);
+    plorg.showPlorg();
 
-    system("pause");
+    plorg = Plorg("MyPlorg");
+    plorg.showPlorg();
+
+    plorg = Plorg("Another Plorg", 20);
+    plorg.showPlorg();
+
+    return 0;
 }
